@@ -10,8 +10,10 @@ categories:
 banner_img: /img/c++_template_binary_banner.png
 index_img: /img/c++_template_binary_index.png
 ---
-# 二进制转换
-第一篇博客，仅用于测试和学习 hexo 系统，代码与内容皆非常简单
+C++ 实现编译期的二进制转换。
+第一篇博客，仅用于测试和学习 hexo 系统，代码与内容都非常简单。
+<!-- more -->
+实现如下
 
 ```c++
 template<size_t N, size_t base>
@@ -42,6 +44,7 @@ struct Binary{
 ```
 
 很低级，不描述了，就这么用：
+
 ```c++
 std::cout << binary<11110011>::value << std::endl; //输出243
 ```

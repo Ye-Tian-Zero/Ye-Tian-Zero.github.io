@@ -7,12 +7,16 @@ tags:
 - demo
 categories:
 - programming
-banner_img: /img/c++_template_binary_banner.png
-index_img: /img/c++_template_binary_index.png
+- c++
+top_img: /img/c++_template_binary_banner.png
+cover: /img/c++_template_binary_index.png
+description: 
+- C++ 实现编译期的二进制转换。
 ---
-C++ 实现编译期的二进制转换。
-第一篇博客，仅用于测试和学习 hexo 系统，代码与内容都非常简单。
 <!-- more -->
+# 编译期二进制转换
+
+第一篇博客，仅用于测试和学习 hexo 系统，代码与内容都非常简单。
 实现如下
 
 ```c++

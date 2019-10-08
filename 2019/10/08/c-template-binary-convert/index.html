@@ -14,7 +14,7 @@
   <meta name="description" content="个人技术博客">
   <meta name="author" content="Skiii">
   <meta name="keywords" content>
-  <title>归档 ~ Skiii</title>
+  <title>编译期二进制转换 ~ Skiii</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -30,7 +30,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -90,7 +90,7 @@
 </nav>
 
     <div class="view intro-2"
-         style="background: url('/img/blood.jpg')no-repeat center center;
+         style="background: url('/img/c++_template_binary_banner.png')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -100,6 +100,9 @@
               
             </span>
 
+            
+              <br>
+              <p>星期二, 十月 8日 2019, 10:53 上午</p>
             
           </div>
 
@@ -111,35 +114,97 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 1 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/2019/10/08/c-template-binary-convert/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">编译期二进制转换</span>
-      <span style="float: right;">10-08</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <h1 id="二进制转换"><a href="#二进制转换" class="headerlink" title="二进制转换"></a>二进制转换</h1><p>第一篇博客，仅用于测试和学习 hexo 系统，代码与内容皆非常简单</p>
+<pre><code class="c++">template&lt;size_t N, size_t base&gt;
+struct BinaryImpl {
+  BinaryImpl() = delete;
+  ~BinaryImpl() = delete;
+  //data check
+  static_assert(N % 10 == 0 || N % 10 == 1, &quot;Value must be 0 or 1.&quot;);
+  using type = BinaryImpl&lt;N, base&gt;;
+  static const size_t value = (N % 10) * base + BinaryImpl&lt;N / 10, base &lt;&lt; 1&gt;::value;
+};
 
-              </div>
-            </div>
+template&lt;size_t base&gt;
+struct BinaryImpl&lt;0, base&gt; {
+  BinaryImpl() = delete;
+  ~BinaryImpl() = delete;
+  using type = BinaryImpl&lt;0, base&gt;;
+  static const size_t value = 0;
+};
+
+template&lt;size_t N&gt;
+struct Binary{
+  Binary() = delete;
+  ~Binary() = delete;
+  using type = Binary&lt;N&gt;;
+  static const size_t value = BinaryImpl&lt;N, 1&gt;::value;
+};</code></pre>
+<p>很低级，不描述了，就这么用：</p>
+<pre><code class="c++">std::cout &lt;&lt; binary&lt;11110011&gt;::value &lt;&lt; std::endl; //输出243</code></pre>
+<p>二进制长度不能超过 size_t 的长度。</p>
+<p>vim 的 markdown 语法默认设置真反人类。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+              <p>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/programming">programming</a>
+                  &nbsp;
+                
+              </p>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/c++">c++</a>
+              
+                <a class="hover-with-bg" href="/tags/meta-programming">meta-programming</a>
+              
+                <a class="hover-with-bg" href="/tags/demo">demo</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -193,6 +258,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
   <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
@@ -208,7 +278,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "编译期二进制转换&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 50,

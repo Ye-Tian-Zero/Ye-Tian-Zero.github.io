@@ -4,13 +4,29 @@
   
   
   <entry>
-    <title>Hello World</title>
-    <link href="undefined2019/10/01/hello-world/"/>
-    <url>2019/10/01/hello-world/</url>
+    <title>编译期二进制转换</title>
+    <link href="undefined2019/10/08/c-template-binary-convert/"/>
+    <url>2019/10/08/c-template-binary-convert/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="二进制转换"><a href="#二进制转换" class="headerlink" title="二进制转换"></a>二进制转换</h1><p>第一篇博客，仅用于测试和学习 hexo 系统，代码与内容皆非常简单</p><pre><code class="c++">template&lt;size_t N, size_t base&gt;struct BinaryImpl {  BinaryImpl() = delete;  ~BinaryImpl() = delete;  //data check  static_assert(N % 10 == 0 || N % 10 == 1, &quot;Value must be 0 or 1.&quot;);  using type = BinaryImpl&lt;N, base&gt;;  static const size_t value = (N % 10) * base + BinaryImpl&lt;N / 10, base &lt;&lt; 1&gt;::value;};template&lt;size_t base&gt;struct BinaryImpl&lt;0, base&gt; {  BinaryImpl() = delete;  ~BinaryImpl() = delete;  using type = BinaryImpl&lt;0, base&gt;;  static const size_t value = 0;};template&lt;size_t N&gt;struct Binary{  Binary() = delete;  ~Binary() = delete;  using type = Binary&lt;N&gt;;  static const size_t value = BinaryImpl&lt;N, 1&gt;::value;};</code></pre><p>很低级，不描述了，就这么用：</p><pre><code class="c++">std::cout &lt;&lt; binary&lt;11110011&gt;::value &lt;&lt; std::endl; //输出243</code></pre><p>二进制长度不能超过 size_t 的长度。</p><p>vim 的 markdown 语法默认设置真反人类。</p>]]></content>
     
     
+    <categories>
+      
+      <category>programming</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>c++</tag>
+      
+      <tag>meta-programming</tag>
+      
+      <tag>demo</tag>
+      
+    </tags>
     
   </entry>
   

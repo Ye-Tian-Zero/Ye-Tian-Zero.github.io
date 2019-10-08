@@ -12,9 +12,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="description" content="个人技术博客">
-  <meta name="author" content="skiii">
+  <meta name="author" content="Skiii">
   <meta name="keywords" content>
-  <title>skiii tech space</title>
+  <title>Skiii</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css">
@@ -34,7 +34,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>skiii tech space</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Skiii</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -127,32 +127,57 @@
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/10/08/c-template-binary-convert/" target="_self">
+          <img src="/img/c++_template_binary_index.png" srcset="/img/loading.gif" alt="编译期二进制转换" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/10/01/hello-world/">
-        <p class="h4 index-header">Hello World</p>
+      <a href="/2019/10/08/c-template-binary-convert/">
+        <p class="h4 index-header">编译期二进制转换</p>
         
         
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
-More info: Writing
-Run server$ hexo server
-More info: Server
-Generate static files$ hexo generate
-More info: Generating
-Deploy to remote sites$ hexo deploy
-More info: Deployment
-</div>
+          <div class="index-text mb-1">二进制转换第一篇博客，仅用于测试和学习 hexo 系统，代码与内容皆非常简单
+template&lt;size_t N, size_t base&gt;
+struct BinaryImpl {
+  BinaryImpl() = delete;
+  ~BinaryImpl() = delete;
+  //data check
+  static_assert(N % 10 == 0 || N % 10 == 1, &quot;Value must be 0 or 1.&quot;);
+  using type = BinaryImpl&lt;N, base&gt;;
+  static const size_t value = (N % 10) * base + BinaryImpl&lt;N / 10, base &lt;&lt; 1&gt;::value;
+};
+
+template&lt;size_t base&gt;
+struct BinaryImpl&lt;0, base&gt; {
+  BinaryImpl() = delete;
+  ~BinaryImpl() = delete;</div>
         </div>
       </a>
 
       <div>
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-01&nbsp;&nbsp;
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-08&nbsp;&nbsp;
         
         
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/programming">programming</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/c++">c++</a>&nbsp;
+          
+            <a href="/tags/meta-programming">meta-programming</a>&nbsp;
+          
+            <a href="/tags/demo">demo</a>&nbsp;
+          
         
       </div>
     </div>

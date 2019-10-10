@@ -1,0 +1,34 @@
+language: node_js
+
+node_js:
+- stable
+
+branches:
+  only:
+  - sources
+
+before_install:
+- npm install -g hexo
+- npm install hexo-renderer-jade hexo-renderer-stylus --save
+- npm install hexo-wordcount --save
+
+cache:
+    apt: true
+    directories:
+        - node_modules # 缓存不经常更改的内容
+
+install:
+
+script:
+- hexo clean
+- hexo generate
+
+after_success:
+- mkdir .deploy
+- cd .deploy
+- git clone --depth 1 --branch master --single-branch https://github.com/skilxn-go/skilxn-go.github.io.git .
+- ls | grep -v CNAME | rm -rf ./*
+- cp -r ../public/* .
+- git add -A .
+- git commit -m 'Travis CI site updated'
+- git push -q -u origin master

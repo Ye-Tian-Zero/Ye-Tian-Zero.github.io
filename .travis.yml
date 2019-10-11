@@ -1,5 +1,10 @@
 language: node_js
 
+env:
+  global:
+    - REPO: github.com/skilxn-go/skilxn-go.github.io.git
+    - secure: "ppXf8hlvPgZ5R+M7ctGyiIKW5lt8S8hvorIpCj2pBNBQ1a3E5rdp9w0uOnwFqFvEHbdrZFS2mmHCH11D4WweUK43LDOCaThjxA767of/SZtkM+pGXh67ZBw3YLIHw5TwgKT8KtWnZ71LiekwqaAH85QO4OY8Rbswd8m8Ul+UNJSwmvTO1L6pCImisl7Z8q7wyc0A/av/cn0J1yHyI4Md0+6HnxvIX2Ag2RHxT/7K6vsy3rCYwTaTuVqOYuhsJ7HxooCJ7CD9oXoHopQ8KN773WTCLWgaD3bXiUUKH3pLSk5DvxTiQ3XQlhuWvplkZEc/8hHqcKVmQ9fqz3o/Dkc/8nfQpFb/ZGxdOgTr1UpCXm+pZt8terIUXn+sPgqNX8KbNkQ4PYzOcrE1oDNt/CKVMnVKORsEKZIXuZqbqyYUjmbASqL/3/TUQrCAnJvUOlphkX608MHHGOCY0maF6wV03qmn9sV3NnmWxu6B57EeUnXWBQzFEVN/Iq91PR8Fg5WqFCdQiezLqcatRxBrAoPHQtjUsaDEzzElwr/HP0BOkHqrSKRLl92EBQBZOMhGV9lOYbGXxcDXUdBazSK4NiHszZLYebHtYqyCToM4OTZ7K9/wN3C5sVAhRYwYwwSdbg/+1uxYTaRmHlGTzodeoASCMD3V4RJ6zA+hO/CdPkQQZP4="
+
 node_js:
 - stable
 
@@ -31,4 +36,4 @@ after_success:
 - cp -r ../public/* .
 - git add -A .
 - git commit -m 'Travis CI site updated'
-- git push -q -u origin master
+- git push -f "https://${GH_TOKEN}@${REPO}" master:master

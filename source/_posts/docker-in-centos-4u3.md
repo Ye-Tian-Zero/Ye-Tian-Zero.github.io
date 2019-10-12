@@ -98,9 +98,18 @@ struct fsxattr {
 ```
 其中，kernel-header 就是我的 kernel-header 的路径，为了方便，我直接把他链接进了这个目录。
 
+## make.sh
+
+由于是从 docker-ce 库编译，并不存在docker自己的 .git 文件，因此需要将`components/engine/hack/make.sh`的这一行
+`elif command -v git &> /dev/null && [ -e .git ] && git rev-parse &> /dev/null; then`
+修改为
+`elif command -v git &> /dev/null && [ -e .github ] && git rev-parse &> /dev/null; then`
+
+
 ## 编译
 以上是预处理，以下开始正式编译。
 我把编译过程总结了一个脚本，你需要把他放到 docker-ce 代码库的根目录，然后直接执行即可。
+
 ### 编译前提
 编译之前确保以下信息：
 - 正确配置了 GOROOT

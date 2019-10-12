@@ -115,7 +115,7 @@ struct fsxattr {
 - 正确配置了 GOROOT
 - export 的 PATH 中正确包含 go 的 bin 目录和 gcc 工具链
 
-编译脚本：
+### 编译脚本
 ```bash
 #!/bin/sh
 set -e

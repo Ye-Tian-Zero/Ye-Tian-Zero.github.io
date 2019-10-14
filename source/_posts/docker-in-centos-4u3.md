@@ -206,7 +206,6 @@ HOME_DIR=$(pwd)
 BUILD_PATH="$HOME_DIR/_build/src/github.com/containerd"
 mkdir $BUILD_PATH -p
 ls $BUILD_PATH | grep containerd &>/dev/null || ln -s $HOME_DIR $BUILD_PATH/containerd
-ls $BUILD_PATH/containerd/vendor/github.com/seccomp/libseccomp-golang | grep libseccomp &>/dev/null || ln -s $HOME_DIR/../libseccomp $BUILD_PATH/containerd/vendor/github.com/seccomp/libseccomp-golang/libseccomp
 export GOPATH=$HOME_DIR/_build
 cd $BUILD_PATH/containerd
 make
@@ -247,7 +246,6 @@ HOME_DIR=$(pwd)
 BUILD_PATH="$HOME_DIR/_build/src/github.com/opencontainers/"
 mkdir $BUILD_PATH -p
 ls $BUILD_PATH | grep runc &>/dev/null || ln -s $HOME_DIR $BUILD_PATH/runc
-ls $BUILD_PATH/runc/vendor/github.com/seccomp/libseccomp-golang | grep libseccomp &>/dev/null || ln -s $HOME_DIR/../libseccomp $BUILD_PATH/runc/vendor/github.com/seccomp/libseccomp-golang/libseccomp
 export GOPATH=$HOME_DIR/_build
 cd $BUILD_PATH/runc
 make -f Makefile static
